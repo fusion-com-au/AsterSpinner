@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
         names.add("Batman");
         names.add("Peter");
         names.add("Bob");
+        names.add("Harry");
+        names.add("Trex");
+        names.add("Ron");
+        names.add("Naomi");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.simple_slide_up_selector, names );
         asterSpinner.setAdapter(adapter);
 

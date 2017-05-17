@@ -53,7 +53,6 @@ public class AsterSpinner extends MaterialEditText {
         setCursorVisible(false);
 
 
-
         // Title
         this.setOnClickListener(new OnClickListener() {
             @Override
@@ -77,6 +76,7 @@ public class AsterSpinner extends MaterialEditText {
                             }
                         })
                         .setPadding(40, 0, 40, 40)
+                        .setContentHeight(1000)
                         .create();
                 TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.header_title);
                 headerTitle.setOnClickListener(new OnClickListener() {
