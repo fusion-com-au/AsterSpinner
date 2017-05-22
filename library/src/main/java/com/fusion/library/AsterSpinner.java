@@ -7,23 +7,27 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import com.fusion.asteredittext.AsterEditText;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnItemClickListener;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 /**
  *
  * Created by scott.carey on 16/05/2017.
  *
  */
-public class AsterSpinner extends MaterialEditText {
+public class AsterSpinner extends AsterEditText {
 
     private DialogPlus selector;
     private BaseAdapter adapter;
     private OnItemClickListener itemListener;
     private Context context;
     private String title;
+    private DisplayInterceptor displayInterceptor;
+
+    public interface DisplayInterceptor {
+        String beforeDisplayChanged( Object object );
+    }
 
     public AsterSpinner(Context context) {
         super(context);
@@ -64,13 +68,18 @@ public class AsterSpinner extends MaterialEditText {
 
                 selector = DialogPlus.newDialog(context)
                         .setAdapter(adapter)
-                        .setHeader(R.layout.dialog_selector_header)
+                        .setHeader(R.layout.aster_selector_header)
                         .setOnItemClickListener(new OnItemClickListener() {
                             @Override
                             public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
-                                setText(adapter.getItem(position).toString());
                                 if (itemListener != null) {
                                     itemListener.onItemClick(dialog, item, view, position);
+                                }
+
+                                if( displayInterceptor != null ) {
+                                    setText( displayInterceptor.beforeDisplayChanged(adapter.getItem(position)));
+                                } else {
+                                    setText(adapter.getItem(position).toString());
                                 }
                                 selector.dismiss();
                             }
@@ -78,7 +87,7 @@ public class AsterSpinner extends MaterialEditText {
                         .setPadding(40, 0, 40, 40)
                         .setContentHeight(1000)
                         .create();
-                TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.header_title);
+                TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.aster_header_title);
                 headerTitle.setOnClickListener(new OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
@@ -97,11 +106,14 @@ public class AsterSpinner extends MaterialEditText {
         }
     }
 
-
     public void setOnItemClickListener(@Nullable OnItemClickListener listener) {
         if (listener == null) {
             itemListener = listener;
         }
+    }
+
+    public void setDisplayInterceptor( DisplayInterceptor displayInterceptor ) {
+        this.displayInterceptor = displayInterceptor;
     }
 
     public void setTitle(String title) {

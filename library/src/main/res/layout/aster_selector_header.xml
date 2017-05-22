@@ -4,14 +4,16 @@
     android:layout_height="40dp">
 
     <TextView
-        android:id="@+id/header_title"
+        android:id="@+id/aster_header_title"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:textSize="16sp"
         android:textStyle="bold"
         android:gravity="center_vertical"
         android:drawableEnd="@drawable/icon_toggle_button_close"
+        android:drawableRight="@drawable/icon_toggle_button_close"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"/>
 
