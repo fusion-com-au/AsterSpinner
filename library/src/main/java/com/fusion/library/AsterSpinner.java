@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.fusion.asteredittext.AsterEditText;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnItemClickListener;
@@ -107,7 +108,7 @@ public class AsterSpinner extends AsterEditText {
     }
 
     public void setOnItemClickListener(@Nullable OnItemClickListener listener) {
-        if (listener == null) {
+        if (listener != null) {
             itemListener = listener;
         }
     }
