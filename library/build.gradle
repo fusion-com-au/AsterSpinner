@@ -22,7 +22,7 @@ dependencies {
     testCompile "org.mockito:mockito-core:1.9.5"
     testCompile "org.robolectric:robolectric:3.0"
     compile 'com.orhanobut:dialogplus:1.11@aar'
-    compile 'com.github.fusion-com-au:asteredittext:0.0.1-SNAPSHOT'
+    compile 'com.github.fusion-com-au:asteredittext:0.0.2-SNAPSHOT'
 }
 
 apply from: '../gradle-mvn-push.gradle'
