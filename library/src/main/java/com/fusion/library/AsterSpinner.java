@@ -76,7 +76,6 @@ public class AsterSpinner extends AsterEditText {
                                 if (itemListener != null) {
                                     itemListener.onItemClick(dialog, item, view, position);
                                 }
-
                                 if( displayInterceptor != null ) {
                                     setText( displayInterceptor.beforeDisplayChanged(adapter.getItem(position)));
                                 } else {
@@ -89,6 +88,8 @@ public class AsterSpinner extends AsterEditText {
                         .setContentHeight(1000)
                         .create();
                 TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.aster_header_title);
+                selector.getHolderView().setVerticalScrollBarEnabled(false);
+                selector.getHeaderView().setVerticalScrollBarEnabled(false);
                 headerTitle.setOnClickListener(new OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
