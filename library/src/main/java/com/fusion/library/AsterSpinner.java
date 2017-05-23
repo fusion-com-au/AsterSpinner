@@ -73,13 +73,13 @@ public class AsterSpinner extends AsterEditText {
                         .setOnItemClickListener(new OnItemClickListener() {
                             @Override
                             public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
-                                if (itemListener != null) {
-                                    itemListener.onItemClick(dialog, item, view, position);
-                                }
                                 if( displayInterceptor != null ) {
                                     setText( displayInterceptor.beforeDisplayChanged(adapter.getItem(position)));
                                 } else {
                                     setText(adapter.getItem(position).toString());
+                                }
+                                if (itemListener != null) {
+                                    itemListener.onItemClick(dialog, item, view, position);
                                 }
                                 selector.dismiss();
                             }
