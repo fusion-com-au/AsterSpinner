@@ -7,6 +7,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
+    android:orientation="vertical"
     tools:context="com.fusion.asterspinner.MainActivity">
 
     <com.fusion.library.AsterSpinner
@@ -16,5 +17,10 @@
         android:layout_width="match_parent"
         app:met_primaryColor="#1ABC9C"
         android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

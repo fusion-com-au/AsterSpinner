@@ -1,10 +1,13 @@
 package com.fusion.library;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -68,8 +71,8 @@ public class AsterSpinner extends AsterEditText {
                 }
 
                 selector = DialogPlus.newDialog(context)
-                        .setAdapter(adapter)
                         .setHeader(R.layout.aster_selector_header)
+                        .setAdapter(adapter)
                         .setOnItemClickListener(new OnItemClickListener() {
                             @Override
                             public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
@@ -93,8 +96,13 @@ public class AsterSpinner extends AsterEditText {
                         .create();
                 TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.aster_header_title);
                 selector.getHolderView().setVerticalScrollBarEnabled(false);
-                selector.getHeaderView().setVerticalScrollBarEnabled(false);
                 headerTitle.setText(title != null ? title : "Choose from");
+                headerTitle.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selector.dismiss();
+                    }
+                });
                 selector.show();
             }
         });
