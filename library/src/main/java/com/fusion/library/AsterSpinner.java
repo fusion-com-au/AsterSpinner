@@ -1,13 +1,10 @@
 package com.fusion.library;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -25,12 +22,11 @@ public class AsterSpinner extends AsterEditText {
     private DialogPlus selector;
     private BaseAdapter adapter;
     private OnItemClickListener itemListener;
-    private Context context;
     private String title;
     private DisplayInterceptor displayInterceptor;
 
     public interface DisplayInterceptor {
-        String beforeDisplayChanged( Object object );
+        CharSequence beforeDisplayChanged( Object object );
     }
 
     public AsterSpinner(Context context) {
@@ -44,7 +40,6 @@ public class AsterSpinner extends AsterEditText {
 
     public AsterSpinner(Context context, AttributeSet attrs, int style) {
         super(context, attrs, style);
-        this.context = context;
         init(context, attrs);
     }
 
