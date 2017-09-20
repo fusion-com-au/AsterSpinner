@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class AsterSpinner extends AsterEditText {
     private BaseAdapter adapter;
     private OnItemClickListener itemListener;
     private String title;
+    private int titleTextSize;
     private DisplayInterceptor displayInterceptor;
 
     public interface DisplayInterceptor {
@@ -86,12 +88,12 @@ public class AsterSpinner extends AsterEditText {
                                 selector.dismiss();
                             }
                         })
-                        .setPadding(40, 0, 40, 40)
                         .setContentHeight(1000)
                         .create();
                 TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.aster_header_title);
                 selector.getHolderView().setVerticalScrollBarEnabled(false);
                 headerTitle.setText(title != null ? title : "Choose from");
+                if (titleTextSize > 0) headerTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, titleTextSize);
                 headerTitle.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -122,6 +124,12 @@ public class AsterSpinner extends AsterEditText {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * Set the text size of the spinner title.
+     * @param textSize The text size in sp.
+     */
+    public void setTitleTextSize(int textSize) { this.titleTextSize = textSize; }
 
 }
 
