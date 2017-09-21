@@ -24,7 +24,7 @@ public class AsterSpinner extends AsterEditText {
     private BaseAdapter adapter;
     private OnItemClickListener itemListener;
     private String title;
-    private int titleTextSize;
+    private float titleTextSize;
     private DisplayInterceptor displayInterceptor;
 
     public interface DisplayInterceptor {
@@ -47,11 +47,12 @@ public class AsterSpinner extends AsterEditText {
 
     public void init(final Context context, final AttributeSet attrs) {
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AsterSpinner);
+        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, R.styleable.AsterSpinner);
         try {
-            title = a.getString(R.styleable.AsterSpinner_aster_title);
+            title = styledAttributes.getString(R.styleable.AsterSpinner_aster_title);
+            titleTextSize = styledAttributes.getDimension(R.styleable.AsterSpinner_title_text_size, 0f);
         } finally {
-            a.recycle();
+            styledAttributes.recycle();
         }
 
         setFocusable(false);
@@ -129,7 +130,7 @@ public class AsterSpinner extends AsterEditText {
      * Set the text size of the spinner title.
      * @param textSize The text size in sp.
      */
-    public void setTitleTextSize(int textSize) { this.titleTextSize = textSize; }
+    public void setTitleTextSize(float textSize) { this.titleTextSize = textSize; }
 
 }
 

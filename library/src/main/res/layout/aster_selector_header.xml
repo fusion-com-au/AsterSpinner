@@ -8,12 +8,14 @@
         android:layout_width="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:textSize="16sp"
         android:textStyle="bold"
         android:gravity="center_vertical"
         android:drawableEnd="@drawable/icon_toggle_button_close"
         android:drawableRight="@drawable/icon_toggle_button_close"
-        android:layout_height="60dp" />
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
