@@ -23,7 +23,7 @@ dependencies {
     testCompile "org.robolectric:robolectric:3.0"
     compile 'com.orhanobut:dialogplus:1.11@aar'
     //compile 'com.rengwuxian.materialedittext:library:2.1.4'
-    compile 'com.github.fusion-com-au:asteredittext:0.0.2-SNAPSHOT'
+    compile 'com.github.fusion-com-au:AsterEditText:master-SNAPSHOT'
 }
 
 apply from: '../gradle-mvn-push.gradle'
