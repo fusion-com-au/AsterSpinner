@@ -29,7 +29,7 @@ allprojects {
                 username properties.getProperty("NEXUS_USERNAME")
                 password properties.getProperty("NEXUS_PASSWORD")
             }
-            url getProperty("FUSION_SNAPSHOT_REPOSITORY_URL")}
+            url getProperty("FUSION_RELEASE_REPOSITORY_URL")}
     }
 }
 
