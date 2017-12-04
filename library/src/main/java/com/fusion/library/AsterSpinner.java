@@ -1,13 +1,11 @@
 package com.fusion.library;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -25,12 +23,12 @@ public class AsterSpinner extends AsterEditText {
     private DialogPlus selector;
     private BaseAdapter adapter;
     private OnItemClickListener itemListener;
-    private Context context;
     private String title;
+    private float titleTextSize;
     private DisplayInterceptor displayInterceptor;
 
     public interface DisplayInterceptor {
-        String beforeDisplayChanged( Object object );
+        CharSequence beforeDisplayChanged( Object object );
     }
 
     public AsterSpinner(Context context) {
@@ -44,17 +42,17 @@ public class AsterSpinner extends AsterEditText {
 
     public AsterSpinner(Context context, AttributeSet attrs, int style) {
         super(context, attrs, style);
-        this.context = context;
         init(context, attrs);
     }
 
     public void init(final Context context, final AttributeSet attrs) {
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AsterSpinner);
+        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, R.styleable.AsterSpinner);
         try {
-            title = a.getString(R.styleable.AsterSpinner_aster_title);
+            title = styledAttributes.getString(R.styleable.AsterSpinner_aster_title);
+            titleTextSize = styledAttributes.getDimension(R.styleable.AsterSpinner_title_text_size, 0f);
         } finally {
-            a.recycle();
+            styledAttributes.recycle();
         }
 
         setFocusable(false);
@@ -91,12 +89,12 @@ public class AsterSpinner extends AsterEditText {
                                 selector.dismiss();
                             }
                         })
-                        .setPadding(40, 0, 40, 40)
                         .setContentHeight(1000)
                         .create();
                 TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.aster_header_title);
                 selector.getHolderView().setVerticalScrollBarEnabled(false);
                 headerTitle.setText(title != null ? title : "Choose from");
+                if (titleTextSize > 0) headerTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, titleTextSize);
                 headerTitle.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -127,6 +125,12 @@ public class AsterSpinner extends AsterEditText {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * Set the text size of the spinner title.
+     * @param textSize The text size in sp.
+     */
+    public void setTitleTextSize(float textSize) { this.titleTextSize = textSize; }
 
 }
 

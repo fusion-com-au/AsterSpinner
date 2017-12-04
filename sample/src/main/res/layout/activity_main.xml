@@ -13,7 +13,6 @@
     <com.fusion.library.AsterSpinner
         android:id="@+id/aster_spinner"
         android:text="Default"
-        app:aster_title="Choose a name"
         android:layout_width="match_parent"
         app:met_primaryColor="#1ABC9C"
         android:layout_height="wrap_content"/>

@@ -2,5 +2,6 @@
 <resources>
    <declare-styleable name="AsterSpinner">
       <attr name="aster_title" format="string"/>
+      <attr name="title_text_size" format="dimension"/>
    </declare-styleable>
 </resources>
