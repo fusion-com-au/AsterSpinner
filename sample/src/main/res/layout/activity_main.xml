@@ -10,6 +10,12 @@
     android:orientation="vertical"
     tools:context="com.fusion.asterspinner.MainActivity">
 
+    <com.fusion.asteredittext.AsterEditText
+        android:id="@+id/imt_bank_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
     <com.fusion.library.AsterSpinner
         android:id="@+id/aster_spinner"
         android:text="Default"
