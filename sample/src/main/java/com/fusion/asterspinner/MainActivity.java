@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         asterSpinner.setDisplayInterceptor(new AsterSpinner.DisplayInterceptor() {
             @Override
             public String beforeDisplayChanged(Object object) {
-                return object.toString() + " lol";
+                return object.toString();
             }
         });
         asterSpinner.setOnItemClickListener(new OnItemClickListener() {
