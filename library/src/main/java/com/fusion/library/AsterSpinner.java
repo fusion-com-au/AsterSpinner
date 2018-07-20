@@ -2,10 +2,12 @@ package com.fusion.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -58,11 +60,14 @@ public class AsterSpinner extends AsterEditText {
         setFocusable(false);
         setCursorVisible(false);
 
-
         // Title
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(v instanceof AsterSpinner){
+                    ((AsterSpinner)v).hideKeyboard();
+                }
 
                 if (adapter == null) {
                     throw new IllegalStateException("Adapter not provided.");
@@ -106,6 +111,12 @@ public class AsterSpinner extends AsterEditText {
         });
     }
 
+    @Override
+    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+        this.hideKeyboard();
+        super.onFocusChanged(focused, direction, previouslyFocusedRect);
+    }
+
     public void setAdapter(BaseAdapter adapter) {
         if (adapter != null) {
             this.adapter = adapter;
@@ -131,6 +142,11 @@ public class AsterSpinner extends AsterEditText {
      * @param textSize The text size in sp.
      */
     public void setTitleTextSize(float textSize) { this.titleTextSize = textSize; }
+
+    private void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindowToken(), 0);
+    }
 
 }
 
