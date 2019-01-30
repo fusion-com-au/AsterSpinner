@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -26,6 +27,7 @@ public class AsterSpinner extends AsterEditText {
     private String title;
     private float titleTextSize;
     private DisplayInterceptor displayInterceptor;
+    private final float TARGET_CONTENT_HEIGHT_PERCENTAGE = 0.6f;
 
     public interface DisplayInterceptor {
         CharSequence beforeDisplayChanged( Object object );
@@ -57,7 +59,9 @@ public class AsterSpinner extends AsterEditText {
 
         setFocusable(false);
         setCursorVisible(false);
-
+        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+        final int screenHeight =  displayMetrics.heightPixels;
+        final int targetHeight = (int)(screenHeight * TARGET_CONTENT_HEIGHT_PERCENTAGE);
 
         // Title
         this.setOnClickListener(new OnClickListener() {
@@ -89,7 +93,7 @@ public class AsterSpinner extends AsterEditText {
                                 selector.dismiss();
                             }
                         })
-                        .setContentHeight(1000)
+                        .setContentHeight(targetHeight)
                         .create();
                 TextView headerTitle = (TextView) selector.getHeaderView().findViewById(R.id.aster_header_title);
                 selector.getHolderView().setVerticalScrollBarEnabled(false);
