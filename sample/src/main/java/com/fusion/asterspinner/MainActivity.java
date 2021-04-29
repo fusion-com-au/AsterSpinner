@@ -1,10 +1,11 @@
 package com.fusion.asterspinner;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.fusion.library.AsterSpinner;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -16,11 +17,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 public class MainActivity extends AppCompatActivity {
 
-
     @BindView(R.id.aster_spinner) AsterSpinner asterSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

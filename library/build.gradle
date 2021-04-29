@@ -3,12 +3,12 @@ apply plugin: 'maven'
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 30
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
     }
@@ -18,11 +18,8 @@ android {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:1.9.5"
-    testCompile "org.robolectric:robolectric:3.0"
-    compile 'com.orhanobut:dialogplus:1.11@aar'
-    compile 'com.github.fusion-com-au:AsterEditText:1.2'
+    api 'com.orhanobut:dialogplus:1.11@aar'
+    api 'com.github.fusion-com-au:AsterEditText:2.0.0'
 }
 
 apply from: '../gradle-mvn-push.gradle'
